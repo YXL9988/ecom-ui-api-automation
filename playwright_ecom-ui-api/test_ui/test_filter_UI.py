@@ -26,7 +26,7 @@ def test_filter_search_by_text(page: Page):
     expect(_cards(page).filter(has_text="ADIDAS")).to_have_count(0)
     expect(_cards(page).filter(has_text="iphone 13 pro")).to_have_count(0)
 
-@pytest.mark.skipif(bool(os.getenv("CI")) reason="external site data may vary on CI")
+@pytest.mark.skipif(bool(os.getenv("CI")),reason="external site data may vary on CI")
 def test_filter_price_range(page:Page):
     _login(page)
     page.goto("https://rahulshettyacademy.com/client/#/dashboard/dash")
