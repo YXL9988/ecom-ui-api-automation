@@ -13,7 +13,7 @@ def test_playwrightBasics(playwright):
     page.goto("https://rahulshettyacademy.com/client")
 
 def test_playwrightShortCut(page:Page): #fixture(page) comes from class(Page)
-    page.goto("https://rahulshettyacademy.com/client")
+    page.goto("https://rahulshettyacademy.com/client", wait_until="domcontentloaded", timeout=60000)
 
 def test_coreLocators(page:Page):
     page.goto("https://rahulshettyacademy.com/client")

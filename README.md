@@ -32,6 +32,7 @@ It runs locally and on GitHub Actions, publishes an HTML report to GitHub Pages,
 ---
 
 ## Project Structure
+<pre>
 ecom-ui-api-automation/
 ├─ .github/
 │  └─ workflows/
@@ -56,6 +57,7 @@ ecom-ui-api-automation/
 │  └─ pytest.ini                   # pytest settings (plugins, metadata, etc.)
 ├─ requirements.txt
 └─ README.md
+<pre>
 
 ---
 
@@ -109,13 +111,13 @@ pytest -n 3
 
 ```bash
 #Windows PowerShell
-Remove-Item -Recurse -Force reports -ErrorAction SilentlyContinue; mkdir reports\videos -Force > $null; pytest -n 3 -rA -vv --html=reports/index.html --self-contained-html 2>&1 | Tee-Object -FilePath reports\pytest.log
+Remove-Item -Recurse -Force reports -ErrorAction SilentlyContinue; mkdir reports\videos -Force > $null; pytest -rA -vv --html=reports/index.html --self-contained-html 2>&1 | Tee-Object -FilePath reports\pytest.log
 
 ```
 
 ```bash
 #macOS/Linux
-rm -rf reports; mkdir -p reports/videos; set -o pipefail; pytest -n 3 -rA -vv --html=reports/index.html --self-contained-html 2>&1 | tee reports/pytest.log
+rm -rf reports; mkdir -p reports/videos; set -o pipefail; pytest -rA -vv --html=reports/index.html --self-contained-html 2>&1 | tee reports/pytest.log
 
 ```
 ---
@@ -161,3 +163,19 @@ markers =
 > Please use test data only. Do not submit real personal or payment information.
 
 ---
+
+## 👩‍💻 About the Author
+
+**Lynn Lin**  
+QA Engineer | SDET in Progress | Ex-S&P Fixed Income Analyst  
+
+- 🔍 Passionate about quality, detail, and automation.
+- 🛠️ Skilled in manual testing, API testing (Postman), SQL, and backend test design.
+- 🚀 Currently expanding skill set into Python, Pytest, Playwright, and CI/CD pipelines.
+- 🌍 Open to global opportunities (remote / hybrid).
+
+📫 Reach me on [LinkedIn] https://www.linkedin.com/in/yan-xi-lynn-l-19b27084
+📧 Email: linyanxi915@gmail.com
+
+
+>  This project is part of my QA/SDET portfolio. Feedback and collaboration are welcome!

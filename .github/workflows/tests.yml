@@ -52,7 +52,7 @@ jobs:
           rm -rf reports || true
           mkdir -p reports/videos
           set -o pipefail
-          pytest -n 3 -rA -vv \
+          pytest -rA -vv \
             --html=reports/index.html --self-contained-html \
             2>&1 | tee reports/pytest.log
 
