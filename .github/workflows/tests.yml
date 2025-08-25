@@ -11,6 +11,39 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m playwright install --with-deps
 
+      - name: Create credentials.json from secrets
+        shell: bash
+        env:
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          ALT_USER_EMAIL: ${{ secrets.ALT_USER_EMAIL }}
+          ALT_USER_PASSWORD: ${{ secrets.ALT_USER_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import os, json, pathlib
+          d = pathlib.Path("playwright_ecom-ui-api") / "data"
+          d.mkdir(parents=True, exist_ok=True)
+
+          # 兩筆正向帳密（第二筆沒設就沿用第一筆）
+          valid1 = {
+            "case": "valid-1",
+            "userEmail": os.environ["USER_EMAIL"],
+            "userPassword": os.environ["USER_PASSWORD"],
+            "expected": 200
+          }
+          valid2 = {
+            "case": "valid-2",
+            "userEmail": os.environ.get("ALT_USER_EMAIL", os.environ["USER_EMAIL"]),
+            "userPassword": os.environ.get("ALT_USER_PASSWORD", os.environ["USER_PASSWORD"]),
+            "expected": 200
+          }
+
+          with open(d/"credentials.json", "w", encoding="utf-8") as f:
+            json.dump({"user_credentials": [valid1, valid2]}, f, indent=2)
+          PY
+      
+      
+
       - name: Run tests (fresh reports)
         shell: bash
         run: |
@@ -21,7 +54,8 @@ jobs:
             --html=reports/index.html --self-contained-html \
             2>&1 | tee reports/pytest.out
 
-      - if: always()
+      - name: Upload Pages artifact
+        if: always()
         uses: actions/upload-pages-artifact@v3
         with:
           path: reports
@@ -31,5 +65,6 @@ jobs:
     permissions: { pages: write, id-token: write }
     runs-on: ubuntu-latest
     steps:
-      - if: always()
+      - name: Deploy to GitHub Pages
+        if: always()
         uses: actions/deploy-pages@v4
