@@ -1,3 +1,6 @@
+[![Tests](https://github.com/YXL9988/ecom-ui-api-automation/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/YXL9988/ecom-ui-api-automation/actions/workflows/tests.yml)
+
+
 # Ecommerce UI + API Tests
 
 End-to-end demo combining **Playwright (UI)** and **pytest/requests (API)** for an ecommerce site.
