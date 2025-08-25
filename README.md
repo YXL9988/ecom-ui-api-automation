@@ -71,16 +71,31 @@ python -m playwright install --with-deps
 ```
 ---
 ## Provide test credentials
-- Option A — Local file
-- Create playwright_ecom-ui-api/data/credentials.json:
+
+**Option A — Local file**
+Create `playwright_ecom-ui-api/data/credentials.json` with:
+
+```json
 {
   "user_credentials": [
-    { "case": "valid-1", "userEmail": "test915@gmail.com",  "userPassword": "Test12345", "expected": 200 },
-    { "case": "valid-2", "userEmail": "test9152@gmail.com", "userPassword": "Test12345", "expected": 200 }
+    {
+      "case": "valid-1",
+      "userEmail": "test915@gmail.com",
+      "userPassword": "Test12345",
+      "expected": 200
+    },
+    {
+      "case": "valid-2",
+      "userEmail": "test9152@gmail.com",
+      "userPassword": "Test12345",
+      "expected": 200
+    }
   ]
 }
+```
 - (Negative cases are in credentials_negative.json and are already in the repo.)
 - Option B — CI secrets (see CI section below): the workflow will generate credentials.json from secrets.
+
 ---
 
 ## Run Tests
@@ -130,10 +145,8 @@ rm -rf reports; mkdir -p reports/videos; set -o pipefail; pytest -rA -vv --html=
 ---
 ## Public report
 - After a successful run, the latest HTML report is published via GitHub Pages.
-- You can find the link in the Actions → tests → deploy job output, or visit:
-```bash
-https://yxl9988.github.io/ecom-ui-api-automation/?sort=result
-```
+- You can find the link in the Actions → tests → deploy job output.
+
 
 ---
 
@@ -158,6 +171,7 @@ markers =
 > Disclaimer
 >
 > The target application is a mock/demo site owned by RahulShettyAcademy and used in an Udemy course.
+> 
 > This repository is for educational purposes only and has no affiliation with the site owners.
 > 
 > Please use test data only. Do not submit real personal or payment information.
