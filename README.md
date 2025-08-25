@@ -57,7 +57,7 @@ ecom-ui-api-automation/
 │  └─ pytest.ini                   # pytest settings (plugins, metadata, etc.)
 ├─ requirements.txt
 └─ README.md
-<pre>
+</pre>
 
 ---
 
