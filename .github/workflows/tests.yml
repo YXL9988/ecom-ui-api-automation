@@ -8,7 +8,8 @@ jobs:
       HEADLESS: "1"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
       - run: python -m playwright install --with-deps
@@ -43,8 +44,7 @@ jobs:
           with open(d/"credentials.json", "w", encoding="utf-8") as f:
             json.dump({"user_credentials": [valid1, valid2]}, f, indent=2)
           PY
-      
-      
+
 
       - name: Run tests (fresh reports)
         shell: bash
@@ -56,11 +56,12 @@ jobs:
             --html=reports/index.html --self-contained-html \
             2>&1 | tee reports/pytest.out
 
-      - name: Upload Pages artifact
+      - name: Upload test report
         if: always()
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: reports
+          name: test-report
+          path: reports/index.html
 
   deploy:
     needs: run
@@ -68,12 +69,14 @@ jobs:
     permissions: { pages: write, id-token: write }
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
           name: test-report
-          path: reports
-      - uses: actions/upload-pages-artifact@v3
+          path: ./reports
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: reports
-      - uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
