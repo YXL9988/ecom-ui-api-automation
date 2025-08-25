@@ -13,3 +13,6 @@ test-results/
 
 # Test artifacts
 reports/
+
+# Secrets
+playwright_ecom-ui-api/data/credentials*.json
