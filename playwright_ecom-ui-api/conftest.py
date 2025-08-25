@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
 import pytest
+HEADLESS = os.getenv("HEADLESS", "1") not in ("0", "false", "False")
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -21,9 +23,9 @@ def user_credentials_negative(request):
 def browserInstance(playwright,request):
     browser_name = request.config.getoption("--browser_name")
     if browser_name == "chrome":
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=HEADLESS)
     elif browser_name == "firefox":
-        browser = playwright.firefox.launch(headless=False)
+        browser = playwright.firefox.launch(headless=HEADLESS)
 
     context = browser.new_context()
     page = context.new_page()

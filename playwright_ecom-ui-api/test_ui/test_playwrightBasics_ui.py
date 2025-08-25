@@ -1,10 +1,13 @@
+import os
 import pytest
 pytestmark = pytest.mark.ui
+
+HEADLESS = os.getenv("HEADLESS", "1") not in ("0", "false", "False")
 
 from playwright.sync_api import Page, expect, Playwright
 
 def test_playwrightBasics(playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=HEADLESS)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://rahulshettyacademy.com/client")
@@ -22,7 +25,7 @@ def test_coreLocators(page:Page):
     login_btn.click()
 
 def test_firefoxBrowser(playwright:Playwright):
-    firefoxBrowser = playwright.firefox.launch(headless=False)
+    firefoxBrowser = playwright.firefox.launch(headless=HEADLESS)
     page = firefoxBrowser.new_page()
     page.goto("https://rahulshettyacademy.com/client")
     page.locator("#userEmail").fill("test915@gmail.com")

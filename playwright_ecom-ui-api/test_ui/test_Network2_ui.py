@@ -1,5 +1,8 @@
+import os
 import pytest
 pytestmark = pytest.mark.ui
+
+HEADLESS = os.getenv("HEADLESS", "1") not in ("0", "false", "False")
 
 import time
 
@@ -31,7 +34,7 @@ def test_Network_unauthorized_user(page:Page):
 def test_session_storage_bypass_login(playwright:Playwright):
     api_utils = APIUtils()
     gettoken = api_utils.getToken(playwright)
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=HEADLESS)
     context = browser.new_context()
     page = context.new_page()
     #script to inject token in session local storage
