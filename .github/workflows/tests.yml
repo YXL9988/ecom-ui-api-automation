@@ -1,0 +1,35 @@
+name: tests
+on: [push, pull_request]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python -m playwright install --with-deps
+
+      - name: Run tests (fresh reports)
+        shell: bash
+        run: |
+          rm -rf reports || true
+          mkdir -p reports/videos
+          set -o pipefail
+          pytest -n 3 -rA -vv \
+            --html=reports/index.html --self-contained-html \
+            2>&1 | tee reports/pytest.out
+
+      - if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports
+
+  deploy:
+    needs: run
+    permissions: { pages: write, id-token: write }
+    runs-on: ubuntu-latest
+    steps:
+      - if: always()
+        uses: actions/deploy-pages@v4

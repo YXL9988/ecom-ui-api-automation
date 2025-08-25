@@ -1,0 +1,15 @@
+# IDE / OS
+.idea/
+.vscode/
+
+# Python / Playwright caches
+.venv/
+__pycache__/
+.pytest_cache/
+.playwright/
+test-results/
+*.log
+.env
+
+# Test artifacts
+reports/

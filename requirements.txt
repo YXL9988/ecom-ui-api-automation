@@ -1,0 +1,11 @@
+pip~=25.2
+filelock~=3.18.0
+
+# --- Core ---
+pytest
+pytest-xdist
+pytest-html
+pytest-playwright
+playwright
+requests
+
