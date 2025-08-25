@@ -93,7 +93,8 @@ Create `playwright_ecom-ui-api/data/credentials.json` with:
   ]
 }
 ```
-- (Negative cases are in credentials_negative.json and are already in the repo.)
+(Negative cases are in credentials_negative.json and are already in the repo.)
+
 - Option B — CI secrets (see CI section below): the workflow will generate credentials.json from secrets.
 
 ---
