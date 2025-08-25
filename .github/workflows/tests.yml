@@ -54,29 +54,34 @@ jobs:
           set -o pipefail
           pytest -n 3 -rA -vv \
             --html=reports/index.html --self-contained-html \
-            2>&1 | tee reports/pytest.out
+            2>&1 | tee reports/pytest.log
 
-      - name: Upload test report
+      - name: Upload Pages artifact (report)
         if: always()
         uses: actions/upload-pages-artifact@v4
         with:
-          name: test-report
-          path: reports/index.html
+          path: reports
+
+      - name: Upload raw artifact (optional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report-raw
+          path: reports/
 
   deploy:
     needs: run
     if: always()
-    permissions: { pages: write, id-token: write }
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: test-report
-          path: ./reports
-
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
+        id: deployment
+        uses: actions/deploy-pages@v4
