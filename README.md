@@ -144,22 +144,19 @@ rm -rf reports; mkdir -p reports/videos; set -o pipefail; pytest -rA -vv --html=
 ## HTML Report & Videos
 - After a local run, open reports/index.html in your browser.
 - Playwright recordings are stored in reports/videos/ (one video per test that opened a browser).
----
 
 ---
 ## Public report
 - After a successful run, the latest HTML report is published via GitHub Pages.
 - You can find the link in the Actions → tests → deploy job output.
 
-
 ---
-
 ## Pytest configuration
 We keep a small `pytest.ini` at the repo root:
 
 ```ini
 [pytest]
-addopts = -q
+addopts = -q --tracing=retain-on-failure
 testpaths = playwright_ecom-ui-api
 pythonpath = .
 python_files = test_*.py
