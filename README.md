@@ -18,21 +18,23 @@ It runs locally and on GitHub Actions, publishes an HTML report to GitHub Pages,
 ## What’s Covered
 
 **UI (Playwright)**
+
 - Basic navigation & core locators
 - Add all items to cart / delete from cart
 - Network stubbing: “no orders” and “unauthorized” flows
 - Session storage / token reuse to bypass login
-- Filters & search (some checks are skipped on CI where external data can vary)
+- Filters & search
 - Video recording of browser sessions
 
 **API (requests + pytest)**
+
 - Login (positive & negative)
-- Get products
-- Create order
-- Get orders
-- Delete order history
-- Negative token scenarios (missing, invalid, empty, dash)
+- Create/Get orders(positive)
+- Create order (negative - invalid token, missing data)
+- Get products (positive & negative-  invalid token)
+- Delete order history (positive & negative-  invalid token)
 ---
+
 
 ## Project Structure
 <pre>
@@ -182,7 +184,7 @@ markers =
 ## 👩‍💻 About the Author
 
 **Lynn Lin**  
-QA Engineer | SDET in Progress | Python, Pytest, Playwright, API | Ex-S&P Fixed Income Analyst  
+SQA Engineer | SDET in Progress | Ex-S&P Fixed Income Analyst  
 
 - 🔍 Passionate about quality, detail, and automation.
 - 🛠️ Skilled in manual testing, API testing (Postman), SQL, and backend test design.
