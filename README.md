@@ -33,6 +33,9 @@ It runs locally and on GitHub Actions, publishes an HTML report to GitHub Pages,
 - Create order (negative - invalid token, missing data)
 - Get products (positive & negative-  invalid token)
 - Delete order history (positive & negative-  invalid token)
+
+**API + UI (hybrid)**
+- Create order via API, then verify the `orderId` is displayed in **UI Orders History page**
 ---
 
 
