@@ -21,7 +21,7 @@ It runs locally and on GitHub Actions, publishes an HTML report to GitHub Pages,
 
 - Basic navigation & core locators
 - Add all items to cart / delete from cart
-- Network stubbing: “no orders” and “unauthorized” flows
+- Network stubbing: “no orders” and “unauthorized” flows (simulate edge cases)
 - Session storage / token reuse to bypass login
 - Filters & search
 - Video recording of browser sessions
@@ -34,8 +34,9 @@ It runs locally and on GitHub Actions, publishes an HTML report to GitHub Pages,
 - Get products (positive & negative-  invalid token)
 - Delete order history (positive & negative-  invalid token)
 
-**API + UI (hybrid)**
+**API + UI (hybrid strategy)**
 - Create order via API, then verify the `orderId` is displayed in **UI Orders History page**
+> combining API setup with UI validation, ensuring frontend-backend consistency
 ---
 
 

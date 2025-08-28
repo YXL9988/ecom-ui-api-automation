@@ -33,6 +33,7 @@ def test_api_login_access_api(playwright:Playwright,user_credentials):
         assert "token" in response
         assert response["message"] == "Login Successfully"
 
+
 @pytest.mark.parametrize('user_credentials_negative',user_credential_list_negative)
 def test_api_login_access_negative_api(playwright:Playwright,user_credentials_negative):
     api = APIUtils()
