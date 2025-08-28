@@ -5,6 +5,7 @@ from pathlib import Path
 from playwright.sync_api import Playwright
 from pageObject.login import LoginPage
 from utils.apiBaseFramework import APIUtils
+import time
 
 ordersPayLoad = {"orders":[{"country":"India","productOrderedId":"68a86429b01c5d7abb27e634"}]}
 
@@ -100,6 +101,27 @@ def test_e2e_web_api(playwright:Playwright, browserInstance, user_credentials,ap
     orderHistoryPage = dashboardPage.selectOrdersNavLink()
     orderDetailsPage = orderHistoryPage.selectOrder(orderId)
     orderDetailsPage.verifyOrderMessage()
+
+@pytest.mark.smoke
+@pytest.mark.parametrize('user_credentials',user_credential_list)
+def test_check_orderId(playwright:Playwright, browserInstance, user_credentials,app_url):
+    userEmail = user_credentials["userEmail"]
+    userPassword = user_credentials["userPassword"]
+
+    # create order -> orderId
+    api_utils = APIUtils()
+    orderId = api_utils.createOrder(playwright, user_credentials)
+    print("created orderId:", orderId)
+
+    # login
+    loginPage = LoginPage(browserInstance)
+    loginPage.navigate(app_url)
+    dashboardPage = loginPage.login(userEmail, userPassword)
+    orderHistoryPage = dashboardPage.selectOrdersNavLink()
+
+    # check orderId
+    assert orderHistoryPage.is_order_present(orderId)
+    time.sleep(5)
 
 @pytest.mark.happy
 @pytest.mark.parametrize('user_credentials',user_credential_list)

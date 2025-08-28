@@ -1,6 +1,7 @@
 from playwright.sync_api import Playwright
 ordersPayLoad = {"orders":[{"country":"India","productOrderedId":"68a86429b01c5d7abb27e634"}]}
 
+
 class APIUtils:
 
     def getToken(self,playwright:Playwright,user_credentials):
@@ -22,9 +23,10 @@ class APIUtils:
         return response.status, response.json()
 
 
-    def createOrder(self,playwright:Playwright,user_credentials):
+    def createOrder(self,playwright:Playwright,user_credentials, product_name="ZARA COAT 3", country="India"):
         status, body = self.getToken(playwright,user_credentials)
         token = body["token"]
+
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_request_context.post("/api/ecom/order/create-order",
                                  data = ordersPayLoad,
