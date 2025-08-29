@@ -75,6 +75,6 @@ class APIUtils:
                                               headers={"Authorization": token,
                                                        "Content-Type": "application/json"
                                                        })
-            return response.status, response.json()
+            return response.status, response.json(), created_order_Id
         finally:
             api_request_context.dispose()

@@ -156,10 +156,14 @@ def test_get_customer_products_invalid_token_api(playwright,user_credentials,bad
 @pytest.mark.parametrize('user_credentials',user_credential_list)
 def test_delete_history_orders_api(playwright:Playwright,user_credentials):
     api_utils = APIUtils()
-    status, body = api_utils.delete_history_orders(playwright, user_credentials)
+    status, body, deleted_order_id = api_utils.delete_history_orders(playwright, user_credentials)
     print(body.get("message"))
     assert status == 200
     assert body.get("message") == "Orders Deleted Successfully"
+
+    status_check, body_check = api_utils.get_customer_products(playwright,user_credentials)
+    order_ids = [o["_id"] for o in body_check["data"]]
+    assert deleted_order_id not in order_ids
 
 @pytest.mark.parametrize('user_credentials',user_credential_list)
 @pytest.mark.parametrize("bad_token", [None,"", "invalid123", "Bearer abc.def.ghi"])
