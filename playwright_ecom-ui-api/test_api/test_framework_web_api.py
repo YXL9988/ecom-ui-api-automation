@@ -14,13 +14,11 @@ script_dir = Path(__file__).resolve().parent
 data_file_path = script_dir.parent / "data" / "credentials.json"
 with open(data_file_path) as f:
     test_data = json.load(f)  # convert json into python object
-    print(test_data)
     user_credential_list = test_data['user_credentials']
 
 data_file_path = script_dir.parent / "data" / "credentials_negative.json"
 with open(data_file_path) as k:
     test_data = json.load(k)
-    print(test_data)
     user_credential_list_negative = test_data['user_credentials_negative']
 
 @pytest.mark.happy
@@ -122,7 +120,6 @@ def test_check_orderId(playwright:Playwright, browserInstance, user_credentials,
 
     # check orderId
     assert orderHistoryPage.is_order_present(orderId)
-    time.sleep(5)
 
 @pytest.mark.happy
 @pytest.mark.parametrize('user_credentials',user_credential_list)

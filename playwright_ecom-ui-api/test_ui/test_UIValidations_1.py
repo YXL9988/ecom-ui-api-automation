@@ -33,7 +33,7 @@ def test_childWindowHandle(page:Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 
     with page.expect_popup() as newPage_info:
-        page.locator(".blinkingText").click()
+        page.locator(".blinkingText").nth(0).click()
         childPage = newPage_info.value
         childPage.locator("Protractor Tutorial")
         text = childPage.locator(".red").text_content()
