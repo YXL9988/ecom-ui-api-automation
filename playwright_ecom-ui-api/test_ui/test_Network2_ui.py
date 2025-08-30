@@ -16,7 +16,7 @@ def intercept_Request(route): #mocking the request
     route.continue_(url="https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=68a6fe44d2e3f0f153bd87f1")
     #input different user's "_id" (Order Id)
 
-@pytest.mark.smoke
+@pytest.mark.network_edge
 def test_Network_unauthorized_user(page:Page):
     page.goto("https://rahulshettyacademy.com/client")
     page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=*",
@@ -31,6 +31,7 @@ def test_Network_unauthorized_user(page:Page):
     print(message) #You are not authorize to view this order
     time.sleep(5)
 
+@pytest.mark.network_edge
 def test_session_storage_bypass_login(playwright:Playwright):
     api_utils = APIUtils()
     gettoken = api_utils.getToken(playwright)

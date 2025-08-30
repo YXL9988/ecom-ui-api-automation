@@ -57,9 +57,10 @@ ecom-ui-api-automation/
 │  ├─ test_ui/
 │  │  ├─ test_playwrightBasics_ui.py
 │  │  ├─ test_UIValidations_1.py
-│  │  ├─ test_Network1_ui.py
-│  │  ├─ test_Network2_ui.py
-│  │  └─ test_filter_UI.py         # has a CI-only skip to avoid flaky external data
+│  │  ├─ test_filter_UI.py       # has a CI-only skip to avoid flaky external data
+│  │  ├─ test_Network1_ui.py     # marked as network_edge (no orders)
+│  │  ├─ test_Network2_ui.py     # marked as network_edge (unauthorized,bypass login)
+│  │  └─ test_network_e2e.py     # Marked as network (cross-layer E2E)
 │  ├─ utils/
 │  │  └─ apiBaseFramework.py
 │  ├─ conftest.py                  # fixtures, video recording, browser options
@@ -123,6 +124,11 @@ pytest -m ui
 ```bash
 # Only API
 pytest -m api
+```
+
+```bash
+# Only network
+pytest -m network
 ```
 
 ```bash

@@ -1,9 +1,9 @@
-
 import time
 
 import pytest
 pytestmark = pytest.mark.ui
 from playwright.sync_api import Page
+
 
 fakePayloadOrderResponse = {"data":[],"message":"No Orders"}
 
@@ -11,7 +11,7 @@ def intercept_response(route):
     route.fulfill(
         json= fakePayloadOrderResponse
     )
-@pytest.mark.smoke
+@pytest.mark.network_edge
 def test_Network_no_orders(page:Page):
     page.goto("https://rahulshettyacademy.com/client")
     page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
