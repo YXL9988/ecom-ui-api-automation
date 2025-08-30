@@ -38,7 +38,7 @@ class APIUtils:
                                  data = ordersPayLoad,
                                  headers= {"Authorization": token,
                                            "Content-Type":"application/json"
-                                           })
+                                           },timeout=15000)
             print(response.json())
             response_body = response.json()
             orderId = response_body["orders"][0]
