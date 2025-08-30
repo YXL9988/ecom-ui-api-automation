@@ -28,8 +28,7 @@ def test_Network_unauthorized_user(page:Page):
     page.get_by_role("button", name="View").first.click()
     time.sleep(5)
     message = page.locator(".blink_me").text_content()
-    print(message) #You are not authorize to view this order
-    time.sleep(5)
+    assert message.strip() == "You are not authorize to view this order"
 
 @pytest.mark.network_edge
 def test_session_storage_bypass_login(playwright:Playwright):

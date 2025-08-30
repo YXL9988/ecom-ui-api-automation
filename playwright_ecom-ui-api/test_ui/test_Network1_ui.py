@@ -21,5 +21,4 @@ def test_Network_no_orders(page:Page):
     page.get_by_role("button", name="Login").click() # api call from browser
     page.get_by_role("button",name="ORDERS").click()
     order_text = page.locator(".mt-4").text_content()
-    print(order_text) # You have No Orders to show at this time. Please Visit Back Us
-    time.sleep(5)
+    assert order_text.strip() == "You have No Orders to show at this time. Please Visit Back Us"
