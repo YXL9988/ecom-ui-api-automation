@@ -22,7 +22,7 @@ class APIUtils:
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         try:
             response = api_request_context.post("/api/ecom/auth/login",
-                                            data={"userEmail": user_email, "userPassword": userPassword})
+                                            data={"userEmail": user_email, "userPassword": userPassword},timeout=15000)
 
             return response.status, response.json()
         finally:
