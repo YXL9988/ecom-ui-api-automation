@@ -177,11 +177,13 @@ markers =
 ---
 > Disclaimer
 >
-> The target application is a mock/demo site owned by RahulShettyAcademy and used in an Udemy course.
+> The target application is a public demo site provided by RahulShettyAcademy for training and practice purposes.
 > 
 > This repository is for educational purposes only and has no affiliation with the site owners.
 > 
-> Please use test data only. Do not submit real personal or payment information.
+> Test scenarios and cases have been customized and extended beyond the original examples.
+> 
+> Please use only test data. Do not submit any real personal or payment information.
 
 ---
 

@@ -4,7 +4,7 @@ from playwright.sync_api import Page, expect
 import re
 
 @pytest.mark.site_angular
-def test_UIValidationDynamicScript(page:Page):
+def test_add_to_cart_UIValidationDynamicScript(page:Page):
     #iphone X, Nokia Edge -> verify 2 items are showing in cart.
     page.goto("https://rahulshettyacademy.com/angularpractice/shop")
     iphoneProduct = page.locator("app-card").filter(has_text="iphone X")
