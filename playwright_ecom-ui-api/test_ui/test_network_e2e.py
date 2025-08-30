@@ -1,5 +1,4 @@
 import json
-import page
 import pytest
 from playwright.sync_api import Playwright,Page
 from utils.apiBaseFramework import APIUtils
