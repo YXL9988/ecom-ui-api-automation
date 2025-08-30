@@ -187,20 +187,20 @@ markers =
 
 ---
 
-## 👩‍💻 About the Author
+## About the Author
 
 **Lynn Lin**  
 SQA Engineer | SDET in Progress | Ex-S&P Fixed Income Analyst  
 
-- 🔍 Passionate about quality, detail, and automation.
-- 🛠️ Skilled in manual testing, API testing (Postman), SQL, and backend test design.
+- Passionate about quality, detail, and automation.
+- Skilled in manual testing, API testing (Postman), SQL, and backend test design.
 - Python automation scripts and build maintainable pytest + Playwright frameworks 
   (fixtures, parametrization, POM,network intercepts, data-driven tests).
-- ⚙️ CI/CD with GitHub Actions
-- 🌍 Open to global opportunities (remote / hybrid).
+- CI/CD with GitHub Actions
+- Open to global opportunities (remote / hybrid).
 
-📫 Reach me on [LinkedIn] https://www.linkedin.com/in/yan-xi-lynn-l-19b27084
-📧 Email: linyanxi915@gmail.com
+Reach me on [LinkedIn] https://www.linkedin.com/in/yan-xi-lynn-l-19b27084
+Email: linyanxi915@gmail.com
 
 
 >  This project is part of my QA/SDET portfolio. Feedback and collaboration are welcome!
