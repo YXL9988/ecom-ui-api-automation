@@ -7,7 +7,7 @@ HEADLESS = os.getenv("HEADLESS", "1") not in ("0", "false", "False")
 from playwright.sync_api import Page, expect, Playwright
 
 def test_playwrightBasics(playwright):
-    browser = playwright.chromium.launch(headless=HEADLESS)
+    browser = playwright.chromium.launch(headless= False)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://rahulshettyacademy.com/client")
@@ -25,7 +25,7 @@ def test_coreLocators(page:Page):
     login_btn.click()
 
 def test_firefoxBrowser(playwright:Playwright):
-    firefoxBrowser = playwright.firefox.launch(headless=HEADLESS)
+    firefoxBrowser = playwright.firefox.launch(headless= False)
     page = firefoxBrowser.new_page()
     page.goto("https://rahulshettyacademy.com/client")
     page.locator("#userEmail").fill("test915@gmail.com")
@@ -56,3 +56,13 @@ def test_delete_products_history(page:Page):
     expect(rows.filter(has_text=order_id)).to_have_count(0)
     expect(rows).to_have_count(before - 1)
 
+
+# def test_login_nitra(page:Page):
+#     page.goto("https://www.nitra.com/")
+#
+#     with page.expect_popup() as pop_info:
+#         page.get_by_role("link", name="Log In").click()
+#
+#         child_page = pop_info.value
+#         child_page.get_by_text("Log in to manage all your Nitra products in one dashboard.").is_visible()
+#

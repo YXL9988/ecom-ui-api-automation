@@ -7,7 +7,7 @@ from pageObject.login import LoginPage
 from utils.apiBaseFramework import APIUtils
 import time
 
-ordersPayLoad = {"orders":[{"country":"India","productOrderedId":"68a86429b01c5d7abb27e634"}]}
+ordersPayLoad = {"orders":[{"country":"India","productOrderedId":"68a961459320a140fe1ca57a"}]}
 
 script_dir = Path(__file__).resolve().parent
 # Construct the absolute path to the data file
